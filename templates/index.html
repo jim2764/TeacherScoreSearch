@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>成績查詢系統</title>
+  </head>
+  <body>
+    <h1>學生成績</h1>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>學號</th>
+          <th>姓名</th>
+          <th>分數</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for sid, name, score in scores %}
+        <tr>
+          <td>{{ sid }}</td>
+          <td>{{ name }}</td>
+          <td>{{ score }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </body>
+</html>
