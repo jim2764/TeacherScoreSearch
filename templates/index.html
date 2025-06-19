@@ -1,27 +1,74 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-Hant">
   <head>
-    <title>成績查詢系統</title>
+    <meta charset="UTF-8" />
+    <title>教師甄試成績查詢</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="{{ url_for('static', filename='css/bootstrap.min.css') }}"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background-color: #f8f9fa;
+      }
+      .header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 2rem;
+      }
+      .header img {
+        width: 60px;
+        height: 60px;
+        object-fit: contain;
+        margin-right: 1rem;
+      }
+      .card {
+        max-width: 500px;
+        margin: 0 auto;
+      }
+    </style>
   </head>
   <body>
-    <h1>學生成績</h1>
-    <table border="1">
-      <thead>
-        <tr>
-          <th>學號</th>
-          <th>姓名</th>
-          <th>分數</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for sid, name, score in scores %}
-        <tr>
-          <td>{{ sid }}</td>
-          <td>{{ name }}</td>
-          <td>{{ score }}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+    <div class="container py-5">
+      <!-- LOGO + 標題 -->
+      <div class="header">
+        <img
+          src="{{ url_for('static', filename='images/北高LOGO.png') }}"
+          alt="學校 Logo"
+        />
+        <h2 class="fw-bold mb-0">教師甄試成績查詢</h2>
+      </div>
+
+      <!-- 表單卡片 -->
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <form method="POST" action="/query">
+            <div class="mb-3">
+              <label for="exam_id" class="form-label">准考證號碼</label>
+              <input
+                type="text"
+                id="exam_id"
+                name="exam_id"
+                class="form-control"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="id_number" class="form-label">身分證字號</label>
+              <input
+                type="text"
+                id="id_number"
+                name="id_number"
+                class="form-control"
+                required
+              />
+            </div>
+            <button type="submit" class="btn btn-primary w-100">查詢</button>
+          </form>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
